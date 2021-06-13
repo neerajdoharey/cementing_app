@@ -1,0 +1,18 @@
+%h1 List of Jobs
+%hr
+%table.table.table-hover.table-sm
+  %thead
+    %tr
+      %th{:scope => "col"} Name
+      %th.text-end{:scope => "col"} Action
+  %tbody
+    - @jobs.each do |job|
+      %tr
+        %td= job.name 
+        %td.text-end
+          = link_to job_path(job) , class: "btn btn-success btn-sm margin_5px" do
+            %i.fas.fa-eye
+          = link_to edit_job_path(job) , class: "btn btn-primary btn-sm margin_5px" do
+            %i.far.fa-edit
+          = link_to job_path(job) , method: :delete ,data: {confirm: "Are you sure"} , class: "btn btn-danger btn-sm margin_5px" do
+            %i.far.fa-trash-alt

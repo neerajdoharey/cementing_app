@@ -1,0 +1,89 @@
+= render "shared/errors", obj: @deployment_order
+%div
+	= form_for @deployment_order , :html => {:class => 'form-horizontal', role: 'form'} do |f|
+		.row
+			.col-md-3
+				.mb-3
+					= f.label :date_of_duty, "Date of Duty", {class:'form-label'}
+					= f.text_field :date_of_duty, {class:'form-control', placeholder: 'Date of Duty', type: 'date'}
+			.col-md-3
+				.mb-3
+					= f.label :rig_id, "Rig Name", {class:'form-label'}
+					= f.select :rig_id, @rigs, {}, {class: "form-select"}
+			.col-md-3
+				.mb-3
+					= f.label :well_name, "Well", {class:'form-label'}
+					= f.text_field :well_name, {class:'form-control', placeholder: 'Well'}
+			.col-md-3
+				.mb-3
+					- time = @deployment_order.departure_time.present? ? @deployment_order.departure_time : Time.now
+					= f.label :departure_time, "Departure time", {class:'form-label datepicker'}
+					= f.text_field :departure_time, {class:'form-control', placeholder: 'Date of Duty', type: 'time', value: time.strftime("%I:%M")}
+		.row
+			.col-md-3
+				.mb-3
+					= f.label :job_id, "Job", {class:'form-label'}
+					= f.select :job_id, @jobs, {}, {class: "form-select"}
+		%h4 Unit Deployed
+		= f.fields_for :unit_deployeds do |ff|
+			.row
+				.col-md-3
+					.mb-3
+						= ff.label :vehicle_name, {class:'form-label'}
+						= ff.text_field :vehicle_name, {class:'form-control', placeholder: 'Vehicle name'}
+			.row
+				= ff.fields_for :unit_deployed_staffs do |e|
+					.col-md-3
+						.mb-3
+							= e.label :staff_id, "Staff Name", {class:'form-label'}
+							= e.select :staff_id, @staffs, {:prompt => 'Select'}, {class: "form-select" }
+		%h4 Cement Unit Deployed
+		= f.fields_for :cement_unit_deployeds do |ff|
+			.row
+				.col-md-3
+					.mb-3
+						= ff.label :vehicle_name, {class:'form-label'}
+						= ff.text_field :vehicle_name, {class:'form-control', placeholder: 'Vehicle name'}
+				.col-md-3
+					.mb-3
+						= ff.label :quantity, {class:'form-label'}
+						= ff.text_field :quantity, {class:'form-control', placeholder: 'Quantity'}
+		%h4 Head Party
+		.row
+			= f.fields_for :head_parties do |ff|
+				.col-md-3
+					.mb-3
+						= ff.label :staff_id, "Staff Name", {class:'form-label'}
+						= ff.select :staff_id, @staffs, {:prompt => 'Select'}, {class: "form-select" }
+		%h4 Main Party
+		.row
+			= f.fields_for :main_parties do |ff|
+				.col-md-3
+					.mb-3
+						= ff.label :staff_id, "Staff Name", {class:'form-label'}
+						= ff.select :staff_id, @staffs, {:prompt => 'Select'}, {class: "form-select" }
+		%h4 Light vehicals
+		.row
+			= f.fields_for :light_vehicals do |ff|
+				.col-md-3
+					.mb-3
+						= ff.label :vehical_no, "Vehical no", {class:'form-label'}
+						= ff.text_field :vehical_no, {class:'form-control', placeholder: 'Vehical no'}
+		.row
+			.col-md-3
+				.mb-3
+					= f.label :job_ic, "Job I/C", {class:'form-label'}
+					= f.text_field :job_ic, {class:'form-control', placeholder: 'Job I/C'}
+			.col-md-3
+				.mb-3
+					= f.label :route, "Route", {class:'form-label'}
+					= f.text_field :route, {class:'form-control', placeholder: 'Route'}
+			.col-md-3
+				.mb-3
+					= f.label :d_site_contact_no, "D/Site Contact no", {class:'form-label'}
+					= f.text_field :d_site_contact_no, {class:'form-control', placeholder: 'D/Site Contact no'}
+			.col-md-9
+				.mb-3
+					= f.label :special_instruction, "Special instruction", {class:'form-label datepicker'}
+					= f.text_area :special_instruction, {class:'form-control', placeholder: 'Special instruction'}
+		= f.submit :class => "btn btn-primary"

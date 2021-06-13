@@ -1,0 +1,12 @@
+- if obj.errors.any?
+  .row
+    .col-sm-8.offset-sm-2
+      .card.border-danger
+        .card-header
+          %h2.card-title
+            = pluralize(obj.errors.count , "error")
+            List of Errors
+        .card-body.text-danger
+          %ul
+            - obj.errors.full_messages.each do |error|
+              %li= error

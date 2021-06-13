@@ -1,0 +1,20 @@
+%div
+  %h1.h3.mb-3.font-weight-normal Log in
+  %p
+    - flash.each do |name,msg|
+      %div{class: "alert alert-#{"#{name}"}"}
+        = content_tag :div, msg, id: "flash_#{name}" if msg.is_a?(String)
+= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  .form-label-group
+    = f.email_field :email, {autofocus: true, autocomplete: "email" ,:placeholder => "Email address", class:'form-control'}
+    = f.label :email, "Email address"
+  .form-label-group
+    = f.password_field :password, {autocomplete: "current-password",:placeholder => "Password", class:'form-control'}
+    = f.label :password, "Password"
+  .checkbox.mb-3
+    %label
+      = f.check_box :remember_me
+      Remember me
+  = f.submit "Log in", class: "btn btn-lg btn-primary btn-block"
+  =# render "devise/shared/links"
+  %p.mt-5.mb-3.text-muted.text-center © 2021-2022

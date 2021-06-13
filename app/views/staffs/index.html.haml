@@ -1,0 +1,19 @@
+%h1 List of Staffs
+%hr
+%table.table.table-hover.table-sm
+  %thead
+    %tr
+      %th{:scope => "col"} Name
+      %th.text-end{:scope => "col"} Action
+  %tbody
+    - @staffs.each do |staff|
+      %tr
+        
+        %td= fullname(staff) 
+        %td.text-end
+          = link_to staff_path(staff) , class: "btn btn-success btn-sm margin_5px" do
+            %i.fas.fa-eye
+          = link_to edit_staff_path(staff) , class: "btn btn-primary btn-sm margin_5px" do
+            %i.far.fa-edit
+          = link_to staff_path(staff) , method: :delete ,data: {confirm: "Are you sure"} , class: "btn btn-danger btn-sm margin_5px" do
+            %i.far.fa-trash-alt

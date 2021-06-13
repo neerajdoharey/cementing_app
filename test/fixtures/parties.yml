@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  staff_id: 1
+  staff_type: MyString
+  deployment_order: one
+
+two:
+  staff_id: 1
+  staff_type: MyString
+  deployment_order: two
