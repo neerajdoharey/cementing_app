@@ -25,6 +25,7 @@ gem 'haml'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 gem 'devise'
+gem 'will_paginate', '~> 3.3.0'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

@@ -25,50 +25,46 @@
 					= f.label :job_id, "Job", {class:'form-label'}
 					= f.select :job_id, @jobs, {}, {class: "form-select"}
 		%h4 Unit Deployed
-		= f.fields_for :unit_deployeds do |ff|
-			.row
-				.col-md-3
-					.mb-3
-						= ff.label :vehicle_name, {class:'form-label'}
-						= ff.text_field :vehicle_name, {class:'form-control', placeholder: 'Vehicle name'}
-			.row
-				= ff.fields_for :unit_deployed_staffs do |e|
-					.col-md-3
-						.mb-3
-							= e.label :staff_id, "Staff Name", {class:'form-label'}
-							= e.select :staff_id, @staffs, {:prompt => 'Select'}, {class: "form-select" }
+		= f.fields_for :unit_deployeds do |builder|
+			= render 'unit_deployed', f: builder
+		.unit_deployed
+		.row
+			.col
+				.mb-3	
+					= link_to_add_row('Add unit deployed', 'unit_deployed', f, :unit_deployeds, class: 'button')
 		%h4 Cement Unit Deployed
-		= f.fields_for :cement_unit_deployeds do |ff|
-			.row
-				.col-md-3
-					.mb-3
-						= ff.label :vehicle_name, {class:'form-label'}
-						= ff.text_field :vehicle_name, {class:'form-control', placeholder: 'Vehicle name'}
-				.col-md-3
-					.mb-3
-						= ff.label :quantity, {class:'form-label'}
-						= ff.text_field :quantity, {class:'form-control', placeholder: 'Quantity'}
+		= f.fields_for :cement_unit_deployeds do |builder|
+			= render 'cement_unit_deployed', f: builder
+		.cement_unit
+		.row
+			.col
+				.mb-3
+					= link_to_add_row('Add Cement Unit', 'cement_unit', f, :cement_unit_deployeds, class: 'button')
 		%h4 Head Party
+		.row.head_party
+			= f.fields_for :head_parties do |builder|
+				= render 'head_party', f: builder
 		.row
-			= f.fields_for :head_parties do |ff|
-				.col-md-3
-					.mb-3
-						= ff.label :staff_id, "Staff Name", {class:'form-label'}
-						= ff.select :staff_id, @staffs, {:prompt => 'Select'}, {class: "form-select" }
+			.col
+				.mb-3	
+					= link_to_add_row('Add Head party', 'head_party', f, :head_parties, class: 'button')
+				
 		%h4 Main Party
+		.row.main_party
+			= f.fields_for :main_parties do |builder|
+				= render 'main_party', f: builder
 		.row
-			= f.fields_for :main_parties do |ff|
-				.col-md-3
-					.mb-3
-						= ff.label :staff_id, "Staff Name", {class:'form-label'}
-						= ff.select :staff_id, @staffs, {:prompt => 'Select'}, {class: "form-select" }
+			.col
+				.mb-3
+					= link_to_add_row('Add main party', 'main_party', f, :main_parties, class: 'button')
 		%h4 Light vehicals
+		.row.light_vehical
+			= f.fields_for :light_vehicals do |builder|
+				= render 'light_vehical', f: builder
 		.row
-			= f.fields_for :light_vehicals do |ff|
-				.col-md-3
-					.mb-3
-						= ff.label :vehical_no, "Vehical no", {class:'form-label'}
-						= ff.text_field :vehical_no, {class:'form-control', placeholder: 'Vehical no'}
+			.col
+				.mb-3
+					= link_to_add_row('Add light vehical', 'light_vehical', f, :light_vehicals, class: 'button')
 		.row
 			.col-md-3
 				.mb-3
@@ -87,3 +83,25 @@
 					= f.label :special_instruction, "Special instruction", {class:'form-label datepicker'}
 					= f.text_area :special_instruction, {class:'form-control', placeholder: 'Special instruction'}
 		= f.submit :class => "btn btn-primary"
+
+:javascript
+	$('form').on('click', '.remove_record', function(event) {
+		$(this).prev('input[type=hidden]').val('1');
+		$(this).closest('.row').hide();
+		return event.preventDefault();
+	});
+
+	$('form').on('click', '.remove_record_hor', function(event) {
+		$(this).prev('input[type=hidden]').val('1');
+		$(this).closest('.row').parent().hide();
+		return event.preventDefault();
+	});
+
+	$('form').on('click', '.add_fields', function(event) {
+		var regexp, time;
+		time = new Date().getTime();
+		regexp = new RegExp($(this).data('id'), 'g');
+		var classname = $(this).data('classname')
+		$('.'+classname).append($(this).data('fields').replace(regexp, time));
+		return event.preventDefault();
+	});

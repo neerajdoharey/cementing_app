@@ -16,3 +16,4 @@
             %i.far.fa-edit
           = link_to job_path(job) , method: :delete ,data: {confirm: "Are you sure"} , class: "btn btn-danger btn-sm margin_5px" do
             %i.far.fa-trash-alt
+= will_paginate @jobs

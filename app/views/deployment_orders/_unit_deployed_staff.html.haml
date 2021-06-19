@@ -1,0 +1,4 @@
+.col-md-3
+  .mb-3
+    = ff.label :staff_id, "Staff Name", {class:'form-label'}
+    = ff.select :staff_id, @staffs, {:prompt => 'Select'}, {class: "form-select" }

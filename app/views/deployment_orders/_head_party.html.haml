@@ -1,0 +1,11 @@
+.col-md-4
+  .row
+    .col-md-10
+      .mb-3
+        = f.label :staff_id, "Staff Name", {class:'form-label'}
+        = f.select :staff_id, @staffs, {:prompt => 'Select'}, {class: "form-select" }
+    .col-md-2
+      .mb-3.delete
+        = link_to '#', class: 'remove_record_hor' do
+          %i.far.fa-times-circle
+        = f.hidden_field :_destroy

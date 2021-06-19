@@ -3,7 +3,7 @@ class StaffsController < ApplicationController
   before_action :set_staff, only: [:edit, :show, :update, :destroy]
 
   def index
-    @staffs = Staff.all
+    @staffs = Staff.all.paginate(page: params[:page], per_page: 10)
   end
 
   def new

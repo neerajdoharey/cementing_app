@@ -1,0 +1,11 @@
+.row
+  .col-md-3
+    .mb-3
+      = f.label :vehicle_name, {class:'form-label'}
+      = f.text_field :vehicle_name, {class:'form-control', placeholder: 'Vehicle name'}
+.row
+  = f.fields_for :unit_deployed_staffs do |e|
+    .col-md-3
+      .mb-3
+        = e.label :staff_id, "Staff Name", {class:'form-label'}
+        = e.select :staff_id, @staffs, {:prompt => 'Select'}, {class: "form-select" }

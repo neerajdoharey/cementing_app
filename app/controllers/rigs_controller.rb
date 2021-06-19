@@ -3,7 +3,7 @@ class RigsController < ApplicationController
   before_action :set_rig, only: [:edit, :show, :update, :destroy]
 
   def index
-    @rigs = Rig.all
+    @rigs = Rig.all.paginate(page: params[:page], per_page: 10)
   end
 
   def new

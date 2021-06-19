@@ -4,18 +4,18 @@ class DeploymentOrdersController < ApplicationController
   before_action :get_rigs, only: [:new, :create, :edit, :show]
 
   def index
-    @deployment_orders = DeploymentOrder.all
+    @deployment_orders = DeploymentOrder.all.paginate(page: params[:page], per_page: 10)
+
   end
 
   def new
     @deployment_order = DeploymentOrder.new
     unit_deployed = @deployment_order.unit_deployeds.build
-    3.times { unit_deployed.unit_deployed_staffs.build }
+    unit_deployed.unit_deployed_staffs.build
     cement_unit_deployed = @deployment_order.cement_unit_deployeds.build
-    3.times { @deployment_order.head_parties.build }
-    3.times { @deployment_order.main_parties.build }
-    3.times { @deployment_order.light_vehicals.build }
-    
+    @deployment_order.head_parties.build
+    @deployment_order.main_parties.build
+    @deployment_order.light_vehicals.build
     
   end
 
