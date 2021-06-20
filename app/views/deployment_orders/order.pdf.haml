@@ -1,31 +1,67 @@
-%h1 Deployment order
-%hr
 .row
-  .col-md-4
-    %label.form-label Date of Duty :
-    = @deployment_order.date_of_duty
-  .col-md-4
-    %label.form-label Rig :
-    = @deployment_order.rig.rig_name
-  .col-md-4
-    %label.form-label Well :
-    = @deployment_order.well_name
+  .col-md-12
+    %table.table.table-bordered.table-sm.ongc_header
+      %tbody
+        %tr
+          %td{:rowspan => "4", :width => "95"}
+            = image_tag image_url('logo.png'), size: "95"
+          %td{:rowspan => "4"} 
+            %h2.ongc.text-center OIL AND NATURAL GAS CORPORATION LTD.
+            %h4.text-center Cementing Services 
+            %h4.text-center Ahmedabad Asset
+          %td
+            Issue No :
+            03/ Date: 13.12.2017
+        %tr
+          %td
+            Rev. No. :
+            00/Date:00.00.0000
+        %tr  
+          %td
+            Doc No. AMD/CMTG/QHSE/R 18
+        %tr  
+          %td
+            Page No.: 271 Of 282
+%h2.text-center DEPLOYMENT ORDER
+%hr
+%table.table.table-sm.dob.table-borderless
+  %tbody
+    %tr
+      %td{:width => '33%'}
+        %label.form-label.fw-bold Date of Duty :
+        = @deployment_order.date_of_duty.strftime('%d-%m-%Y')
+      %td{:width => '33%'}
+        %label.form-label.fw-bold Rig :
+        = @deployment_order.rig.rig_name
+      %td{:width => '33%'}
+        %label.form-label.fw-bold Well :
+        = @deployment_order.well_name
+-# .row
+-#   .col-md-4
+-#     %label.form-label.fw-bold Date of Duty :
+-#     = @deployment_order.date_of_duty.strftime('%d-%m-%Y')
+-#   .col-md-4
+-#     %label.form-label.fw-bold Rig :
+-#     = @deployment_order.rig.rig_name
+-#   .col-md-4
+-#     %label.form-label.fw-bold Well :
+-#     = @deployment_order.well_name
 
 .row
   .col-md-12
-    %label.form-label Job :
+    %label.form-label.fw-bold Job :
     = @deployment_order.job.name
 .row
   .col-md-12
-    %label.form-label Departure time :
-    = @deployment_order.departure_time
+    %label.form-label.fw-bold Departure time :
+    = "#{@deployment_order.departure_time.strftime("%k:%M")} hrs"
 .row
   .col-md-12
     %table.table.table-bordered
       %thead
         %tr
-          %th{:scope => "col"} Vehicle
-          %th{:scope => "col", :colspan => "3"} Crew Deployed
+          %th{:scope => "col", :width => '150'} Vehicle
+          %th.crew{:scope => "col", :colspan => "3"} Crew Deployed
 
       %tbody
         - @deployment_order.unit_deployeds.each do |unit_deployed|
@@ -45,7 +81,7 @@
     %table.table.table-bordered
       %tbody
         %tr
-          %th{:scope => "col"} Head Party
+          %th{:scope => "col", :width => '150'} Head Party
           - @deployment_order.head_parties.each do |party|
             %td= fullname(party.staff)
 .row
@@ -53,7 +89,7 @@
     %table.table.table-bordered
       %tbody
         %tr
-          %th{:scope => "col"} Main Party
+          %th{:scope => "col", :width => '150'} Main Party
           - @deployment_order.main_parties.each do |party|
             %td= fullname(party.staff)
 .row
@@ -61,20 +97,20 @@
     %table.table.table-bordered
       %tbody
         %tr
-          %th{:scope => "col"} Light Vehical
+          %th{:scope => "col", :width => '150'} Light Vehical
           - @deployment_order.light_vehicals.each do |vehical|
             %td= vehical.vehical_no
 .row
   .col-md-12
-    %label.form-label Job I/C :
+    %label.form-label.fw-bold Job I/C :
     = @deployment_order.job_ic
   .col-md-12
-    %label.form-label Route :
+    %label.form-label.fw-bold Route :
     = @deployment_order.route
   .col-md-12
-    %label.form-label D/Site Contact no :
+    %label.form-label.fw-bold D/Site Contact no :
     = @deployment_order.d_site_contact_no
   .col-md-12
-    %label.form-label Special instruction :
+    %label.form-label.fw-bold Special instruction :
     = @deployment_order.special_instruction
-  
+

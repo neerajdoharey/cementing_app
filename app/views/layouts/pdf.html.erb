@@ -5,9 +5,10 @@
     <%#= wicked_pdf_stylesheet_link_tag "application"%>
     <%#= wicked_pdf_javascript_include_tag "application" %>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap" rel="stylesheet">  
     <%#= stylesheet_pack_tag "application"%>
     <%#= javascript_pack_tag "application" %>
-    
   </head>
   <body class="pdf">
     <div class='container'>
@@ -15,8 +16,15 @@
     </div>
   </body>
   <style>
+    body{font-family: 'Roboto'}
+    h1{font-weight: 500;font-size: 2.5rem;}
+    h2.ongc{font-weight: 500;font-size: 1.7rem;}
     table tr th, table tr td {
       text-align: left;
     }
+    th.crew{text-align: center;}
+    table.ongc_header td:last-child{padding: 0.10rem 0.25rem;}
+    table.ongc_header td:last-child{ font-size: 15px;}
+    td.dob{ border-style: none; border-color: none;}
   </style>
 </html>

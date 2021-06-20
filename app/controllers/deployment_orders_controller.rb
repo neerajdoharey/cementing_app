@@ -4,7 +4,7 @@ class DeploymentOrdersController < ApplicationController
   before_action :get_rigs, only: [:new, :create, :edit, :show]
 
   def index
-    @deployment_orders = DeploymentOrder.all.paginate(page: params[:page], per_page: 10)
+    @deployment_orders = DeploymentOrder.order("date_of_duty DESC").paginate(page: params[:page], per_page: 10)
 
   end
 
@@ -16,6 +16,7 @@ class DeploymentOrdersController < ApplicationController
     @deployment_order.head_parties.build
     @deployment_order.main_parties.build
     @deployment_order.light_vehicals.build
+    @deployment_order.job_incharges.build
     
   end
 
@@ -60,7 +61,7 @@ class DeploymentOrdersController < ApplicationController
 
   private
   def deployment_order_params
-    params.require(:deployment_order).permit(:well_name, :date_of_duty, :departure_time, :rig_id, :job_id, :job_ic, :route, :d_site_contact_no, :special_instruction, :unit_deployeds_attributes => [:id, :vehicle_name, :_destroy,  :unit_deployed_staffs_attributes => [:id, :staff_id, :_destroy]], :cement_unit_deployeds_attributes => [:id, :vehicle_name, :quantity, :_destroy], :head_parties_attributes => [:id, :staff_id, :_destroy], :main_parties_attributes => [ :id, :staff_id, :_destroy], :light_vehicals_attributes => [ :id, :vehical_no, :_destroy])
+    params.require(:deployment_order).permit(:well_name, :date_of_duty, :departure_time, :rig_id, :job_id, :job_ic, :route, :d_site_contact_no, :special_instruction, :unit_deployeds_attributes => [:id, :vehicle_name, :_destroy,  :unit_deployed_staffs_attributes => [:id, :staff_id, :_destroy]], :cement_unit_deployeds_attributes => [:id, :vehicle_name, :quantity, :_destroy], :head_parties_attributes => [:id, :staff_id, :_destroy], :main_parties_attributes => [ :id, :staff_id, :_destroy], :light_vehicals_attributes => [ :id, :vehical_no, :_destroy], :job_incharges_attributes => [:id, :staff_id, :_destroy])
   end
 
   def set_deployment_order

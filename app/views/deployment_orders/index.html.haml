@@ -1,28 +1,28 @@
 %h1 List of Deployment Orders
 %hr
 %table.table.table-hover.table-sm
-	%thead
-		%tr
-			%th{:scope => "col"} Date
-			%th{:scope => "col"} Rig
-			%th{:scope => "col"} Well
-			%th{:scope => "col"} Departure time
-			%th{:scope => "col"} Job
-			%th.text-end{:scope => "col"} Action
-	%tbody
-		- @deployment_orders.each do |deployment_order|
-			%tr
-				%td= deployment_order.date_of_duty
-				%td= deployment_order.rig.rig_name
-				%td= deployment_order.well_name
-				%td= deployment_order.departure_time.strftime("%I:%M")
-				%td= deployment_order.job.name
-				%td.text-end
-					= link_to deployment_order_path(deployment_order) , class: "btn btn-success btn-sm margin_5px" do
-						%i.fas.fa-eye
-					= link_to deployment_order_path(deployment_order, :format => :pdf) , class: "btn btn-warning btn-sm margin_5px", target: "_blank" do
-						%i.fas.fa-file-download
-					= link_to edit_deployment_order_path(deployment_order) , class: "btn btn-primary btn-sm margin_5px" do
-						%i.far.fa-edit
-					= link_to deployment_order_path(deployment_order) , method: :delete ,data: {confirm: "Are you sure"} , class: "btn btn-danger btn-sm margin_5px" do
-						%i.far.fa-trash-alt
+  %thead
+    %tr
+      %th{:scope => "col"} Date
+      %th{:scope => "col"} Rig
+      %th{:scope => "col"} Well
+      %th{:scope => "col"} Departure time
+      %th{:scope => "col"} Job
+      %th.text-end{:scope => "col"} Action
+  %tbody
+    - @deployment_orders.each do |deployment_order|
+      %tr
+        %td= deployment_order.date_of_duty.strftime('%d-%m-%Y')
+        %td= deployment_order.rig.rig_name
+        %td= deployment_order.well_name
+        %td= deployment_order.departure_time.strftime("%I:%M")
+        %td= deployment_order.job.name
+        %td.text-end
+          = link_to deployment_order_path(deployment_order) , class: "btn btn-success btn-sm margin_5px" do
+            %i.fas.fa-eye
+          = link_to deployment_order_path(deployment_order, :format => :pdf) , class: "btn btn-warning btn-sm margin_5px", target: "_blank" do
+            %i.fas.fa-file-download
+          = link_to edit_deployment_order_path(deployment_order) , class: "btn btn-primary btn-sm margin_5px" do
+            %i.far.fa-edit
+          = link_to deployment_order_path(deployment_order) , method: :delete ,data: {confirm: "Are you sure"} , class: "btn btn-danger btn-sm margin_5px" do
+            %i.far.fa-trash-alt

@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_06_053516) do
+ActiveRecord::Schema.define(version: 2021_06_20_110358) do
 
   create_table "cement_unit_deployeds", force: :cascade do |t|
     t.string "vehicle_name"
-    t.float "quantity"
+    t.string "quantity"
     t.integer "deployment_order_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -41,6 +41,14 @@ ActiveRecord::Schema.define(version: 2021_06_06_053516) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["deployment_order_id"], name: "index_head_parties_on_deployment_order_id"
+  end
+
+  create_table "job_incharges", force: :cascade do |t|
+    t.integer "staff_id"
+    t.integer "deployment_order_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["deployment_order_id"], name: "index_job_incharges_on_deployment_order_id"
   end
 
   create_table "jobs", force: :cascade do |t|
@@ -107,6 +115,7 @@ ActiveRecord::Schema.define(version: 2021_06_06_053516) do
 
   add_foreign_key "cement_unit_deployeds", "deployment_orders"
   add_foreign_key "head_parties", "deployment_orders"
+  add_foreign_key "job_incharges", "deployment_orders"
   add_foreign_key "light_vehicals", "deployment_orders"
   add_foreign_key "main_parties", "deployment_orders"
   add_foreign_key "unit_deployed_staffs", "unit_deployeds"

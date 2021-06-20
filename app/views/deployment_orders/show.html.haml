@@ -2,23 +2,23 @@
 %hr
 .row
   .col-md-4
-    %label.form-label Date of Duty :
+    %label.form-label.fw-bold Date of Duty :
     = @deployment_order.date_of_duty
   .col-md-4
-    %label.form-label Rig :
+    %label.form-label.fw-bold Rig :
     = @deployment_order.rig.rig_name
   .col-md-4
-    %label.form-label Well :
+    %label.form-label.fw-bold Well :
     = @deployment_order.well_name
 
 .row
   .col-md-12
-    %label.form-label Job :
+    %label.form-label.fw-bold Job :
     = @deployment_order.job.name
 .row
   .col-md-12
-    %label.form-label Departure time :
-    = @deployment_order.departure_time
+    %label.form-label.fw-bold Departure time :
+    = @deployment_order.departure_time.strftime("%I:%M %p")
 .row
   .col-md-12
     %table.table.table-bordered
@@ -34,10 +34,12 @@
             %td= fullname(unit_deployed.unit_deployed_staffs[0].staff)
             %td= fullname(unit_deployed.unit_deployed_staffs[1].staff) rescue "-"
             %td= fullname(unit_deployed.unit_deployed_staffs[2].staff) rescue "-"
+            %td= fullname(unit_deployed.unit_deployed_staffs[3].staff) rescue "-"
         - @deployment_order.cement_unit_deployeds.each do |cement|
           %tr
             %th{:scope => "row"}= cement.vehicle_name
             %td= cement.quantity
+            %td -
             %td -
             %td -
 .row
@@ -66,15 +68,17 @@
             %td= vehical.vehical_no
 .row
   .col-md-12
-    %label.form-label Job I/C :
-    = @deployment_order.job_ic
+    %label.form-label.fw-bold Job I/C :
+    - @deployment_order.job_incharges.each do |job_incharge|
+      = fullname(job_incharge.staff)
+      ,
   .col-md-12
-    %label.form-label Route :
+    %label.form-label.fw-bold Route :
     = @deployment_order.route
   .col-md-12
-    %label.form-label D/Site Contact no :
+    %label.form-label.fw-bold D/Site Contact no :
     = @deployment_order.d_site_contact_no
   .col-md-12
-    %label.form-label Special instruction :
+    %label.form-label.fw-bold Special instruction :
     = @deployment_order.special_instruction
   
