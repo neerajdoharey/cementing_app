@@ -62,20 +62,16 @@
         %tr
           %th{:scope => "col", :width => '150'} Vehicle
           %th.crew{:scope => "col", :colspan => "3"} Crew Deployed
-
       %tbody
         - @deployment_order.unit_deployeds.each do |unit_deployed|
           %tr
             %th{:scope => "row"}= unit_deployed.vehicle_name
-            %td= fullname(unit_deployed.unit_deployed_staffs[0].staff)
-            %td= fullname(unit_deployed.unit_deployed_staffs[1].staff) rescue "-"
-            %td= fullname(unit_deployed.unit_deployed_staffs[2].staff) rescue "-"
+            - unit_deployed.unit_deployed_staffs.each do |unit_deployed_staff|
+              %td= fullname(unit_deployed_staff.staff)
         - @deployment_order.cement_unit_deployeds.each do |cement|
           %tr
             %th{:scope => "row"}= cement.vehicle_name
             %td= cement.quantity
-            %td -
-            %td -
 .row
   .col-md-12
     %table.table.table-bordered

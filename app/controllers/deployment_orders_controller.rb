@@ -5,7 +5,6 @@ class DeploymentOrdersController < ApplicationController
 
   def index
     @deployment_orders = DeploymentOrder.order("date_of_duty DESC").paginate(page: params[:page], per_page: 10)
-
   end
 
   def new
@@ -34,6 +33,11 @@ class DeploymentOrdersController < ApplicationController
   end
 
   def show
+    @staff_max = 0
+    @deployment_order.unit_deployeds.each do |unit_deployed|
+      @staff_max = unit_deployed.unit_deployed_staffs.length if unit_deployed.unit_deployed_staffs.length > @staff_max
+    end
+    
     respond_to do |format|
       format.html
       format.pdf do
