@@ -33,7 +33,7 @@
             %th{:scope => "row"}= unit_deployed.vehicle_name
             - unit_size = unit_deployed.unit_deployed_staffs.length
             - unit_deployed.unit_deployed_staffs.each do |unit_deployed_staff|
-              %td= fullname(unit_deployed_staff.staff)
+              %td= fullname(unit_deployed_staff.staff) rescue ""
             - for i in unit_size...@staff_max
               %td
         - @deployment_order.cement_unit_deployeds.each do |cement|
