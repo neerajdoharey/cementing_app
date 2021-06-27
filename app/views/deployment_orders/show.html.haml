@@ -72,12 +72,12 @@
     - @deployment_order.job_incharges.each do |job_incharge|
       = fullname(job_incharge.staff)
       ,
-  .col-md-12
-    %label.form-label.fw-bold Route :
-    = @deployment_order.route
-  .col-md-12
-    %label.form-label.fw-bold D/Site Contact no :
-    = @deployment_order.d_site_contact_no
+  -# .col-md-12
+  -#   %label.form-label.fw-bold Route :
+  -#   = @deployment_order.route
+  -# .col-md-12
+  -#   %label.form-label.fw-bold D/Site Contact no :
+  -#   = @deployment_order.d_site_contact_no
   .col-md-12
     %label.form-label.fw-bold Special instruction :
     = @deployment_order.special_instruction
