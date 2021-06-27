@@ -65,7 +65,7 @@ class DeploymentOrdersController < ApplicationController
 
   private
   def deployment_order_params
-    params.require(:deployment_order).permit(:well_name, :date_of_duty, :departure_time, :rig_id, :job_id, :job_ic, :route, :d_site_contact_no, :special_instruction, :unit_deployeds_attributes => [:id, :vehicle_name, :_destroy,  :unit_deployed_staffs_attributes => [:id, :staff_id, :_destroy]], :cement_unit_deployeds_attributes => [:id, :vehicle_name, :quantity, :_destroy], :head_parties_attributes => [:id, :staff_id, :_destroy], :main_parties_attributes => [ :id, :staff_id, :_destroy], :light_vehicals_attributes => [ :id, :vehical_no, :_destroy], :job_incharges_attributes => [:id, :staff_id, :_destroy])
+    params.require(:deployment_order).permit(:id, :well_name, :date_of_duty, :departure_time, :rig_id, :job_id, :job_ic, :route, :d_site_contact_no, :special_instruction, :unit_deployeds_attributes => [:id, :vehicle_name, :_destroy,  :unit_deployed_staffs_attributes => [:id, :staff_id, :_destroy]], :cement_unit_deployeds_attributes => [:id, :vehicle_name, :quantity, :_destroy], :head_parties_attributes => [:id, :staff_id, :_destroy], :main_parties_attributes => [ :id, :staff_id, :_destroy], :light_vehicals_attributes => [ :id, :vehical_no, :_destroy], :job_incharges_attributes => [:id, :staff_id, :_destroy])
   end
 
   def set_deployment_order

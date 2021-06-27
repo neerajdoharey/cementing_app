@@ -32,7 +32,7 @@
       .col
         .mb-3
           = link_to_add_row('Add unit deployed', 'unit_deployed', f, :unit_deployeds, class: 'button')
-    %h4 Cement Unit Deployed
+    %h4 Mobile silo Deployed
     = f.fields_for :cement_unit_deployeds do |builder|
       = render 'cement_unit_deployed', f: builder
     .cement_unit
@@ -74,14 +74,14 @@
         .mb-3
           = link_to_add_row('Add Job I/C', 'job_incharge', f, :job_incharges, class: 'button')
     .row
-      .col-md-3
-        .mb-3
-          = f.label :route, "Route", {class:'form-label'}
-          = f.text_field :route, {class:'form-control', placeholder: 'Route'}
-      .col-md-3
-        .mb-3
-          = f.label :d_site_contact_no, "D/Site Contact no", {class:'form-label'}
-          = f.text_field :d_site_contact_no, {class:'form-control', placeholder: 'D/Site Contact no'}
+      -# .col-md-3
+      -#   .mb-3
+      -#     = f.label :route, "Route", {class:'form-label'}
+      -#     = f.text_field :route, {class:'form-control', placeholder: 'Route'}
+      -# .col-md-3
+      -#   .mb-3
+      -#     = f.label :d_site_contact_no, "D/Site Contact no", {class:'form-label'}
+      -#     = f.text_field :d_site_contact_no, {class:'form-control', placeholder: 'D/Site Contact no'}
       .col-md-9
         .mb-3
           = f.label :special_instruction, "Special instruction", {class:'form-label datepicker'}
@@ -89,15 +89,36 @@
     = f.submit :class => "btn btn-primary"
 
 :javascript
+
+  $('form').on('click', '.remove_record_unit', function(event) {
+    $(this).next('input[type=hidden]').val('1');
+    row = $(this).closest('.row').hide();
+    row.next().hide();
+    row.next().next().hide();
+    return event.preventDefault();
+  });
+
   $('form').on('click', '.remove_record', function(event) {
-    $(this).prev('input[type=hidden]').val('1');
+    //$(this).prev('input[type=hidden]').val('1');
+    $(this).next('input[type=hidden]').val('1');
     $(this).closest('.row').hide();
     return event.preventDefault();
   });
 
   $('form').on('click', '.remove_record_hor', function(event) {
-    $(this).prev('input[type=hidden]').val('1');
+    //$(this).prev('input[type=hidden]').val('1');
+    $(this).next('input[type=hidden]').val('1');
     $(this).closest('.row').parent().hide();
+    return event.preventDefault();
+  });
+
+  $('form').on('click', '.unit_add_fields', function(event) {
+    var regexp, time;
+    time = new Date().getTime();
+    regexp = new RegExp($(this).data('id'), 'g');
+    //var classname = $(this).data('classname')
+    //$('.'+classname).append($(this).data('fields').replace(regexp, time));
+    $(this).parent().parent().parent().prev().append($(this).data('fields').replace(regexp, time));
     return event.preventDefault();
   });
 

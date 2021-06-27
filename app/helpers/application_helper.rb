@@ -5,7 +5,11 @@ module ApplicationHelper
     fields = f.fields_for(association, new_object, child_index: id) do |builder|
       render(association.to_s.singularize, f: builder)
     end
-    link_to(name, 'javascript:void(0);', class: "add_fields " + args[:class], data: {id: id, classname: class_name, fields: fields.gsub("\n", "")})
+    if class_name == "staff_deployed"
+      link_to(name, 'javascript:void(0);', class: "unit_add_fields " + args[:class], data: {id: id, classname: class_name, fields: fields.gsub("\n", "")})
+    else
+      link_to(name, 'javascript:void(0);', class: "add_fields " + args[:class], data: {id: id, classname: class_name, fields: fields.gsub("\n", "")})
+    end
   end
 
   def will_paginate(collection_or_options = nil, options = {})
