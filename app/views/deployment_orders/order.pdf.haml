@@ -4,7 +4,8 @@
       %tbody
         %tr
           %td{:rowspan => "4", :width => "95"}
-            = image_tag image_url('logo.png'), size: "95"
+            -# = image_tag image_url('logo.png'), size: "95"
+            %img{:alt => "", width: "95", :src => "data:image/png;base64,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"}/
           %td{:rowspan => "4"} 
             %h2.ongc.text-center OIL AND NATURAL GAS CORPORATION LTD.
             %h4.text-center Cementing Services 
@@ -46,7 +47,6 @@
 -#   .col-md-4
 -#     %label.form-label.fw-bold Well :
 -#     = @deployment_order.well_name
-
 .row
   .col-md-12
     %label.form-label.fw-bold Job :
@@ -104,7 +104,9 @@
 .row
   .col-md-12
     %label.form-label.fw-bold Job I/C :
-    = @deployment_order.job_ic
+    - @deployment_order.job_incharges.each do |job_incharge|
+      = fullname(job_incharge.staff)
+      ,
   -# .col-md-12
   -#   %label.form-label.fw-bold Route :
   -#   = @deployment_order.route
