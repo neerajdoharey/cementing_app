@@ -57,7 +57,7 @@
       .col
         .mb-3
           = link_to_add_row('Add main party', 'main_party', f, :main_parties, class: 'button')
-    %h4 Light vehicals
+    %h4 Light vehicles
     .row.light_vehical
       = f.fields_for :light_vehicals do |builder|
         = render 'light_vehical', f: builder

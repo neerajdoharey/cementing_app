@@ -12,7 +12,7 @@
             %h4.text-center Ahmedabad Asset
           %td
             Issue No :
-            03/ Date: 13.12.2017
+            04/ Date: 01.06.2021
         %tr
           %td
             Rev. No. :
@@ -98,9 +98,9 @@
     %table.table.table-bordered
       %tbody
         %tr
-          %th{:scope => "col", :width => '150'} Light Vehical
-          - @deployment_order.light_vehicals.each do |vehical|
-            %td= vehical.vehical_no
+          %th{:scope => "col", :width => '150'} Light Vehicle
+          - @deployment_order.light_vehicals.each do |vehicle|
+            %td= vehicle.vehical_no
 .row
   .col-md-12
     %label.form-label.fw-bold Job I/C :
