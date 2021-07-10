@@ -26,6 +26,15 @@ class StaffsController < ApplicationController
   def show
   end
 
+  def update
+    if @staff.update(staff_params)
+      flash[:success] = "Staff update"
+      redirect_to staffs_path(@staff)
+    else
+      render 'edit'
+    end
+  end
+
   def destroy
     @staff.destroy
     flash[:danger] = "Staff was Successfully Deleted..."
@@ -34,7 +43,7 @@ class StaffsController < ApplicationController
 
   private
   def staff_params
-    params.require(:staff).permit(:first_name, :last_name)
+    params.require(:staff).permit(:first_name, :last_name, :employee_type)
   end
 
   def set_staff

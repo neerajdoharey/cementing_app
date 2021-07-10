@@ -69,9 +69,10 @@
 .row
   .col-md-12
     %label.form-label.fw-bold Job I/C :
+    - staff_name = []
     - @deployment_order.job_incharges.each do |job_incharge|
-      = fullname(job_incharge.staff)
-      ,
+      -staff_name << fullname(job_incharge.staff)
+    = staff_name.join(" , ")
   -# .col-md-12
   -#   %label.form-label.fw-bold Route :
   -#   = @deployment_order.route

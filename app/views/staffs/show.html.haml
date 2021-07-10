@@ -1,0 +1,9 @@
+%h1 Staffs
+%hr
+.row
+  .col-md-4
+    %label.form-label.fw-bold Name :
+    = fullname(@staff)
+  .col-md-4
+    %label.form-label.fw-bold Employee type :
+    = Staff::STAFF_TYPE[@staff.employee_type.to_s]

@@ -2,12 +2,16 @@
 = form_for @staff , :html => {:class => 'form-horizontal', role: 'form'} do |f|
   .form-row
     .row
-      .col-md-6
+      .col-md-4
         .mb-3
           = f.label :first_name, {class:'form-label'}
           = f.text_field :first_name, {class:'form-control', placeholder: 'First name'}
-      .col-md-6
+      .col-md-4
         .mb-3
           = f.label :last_name, {class:'form-label'}
           = f.text_field :last_name, {class:'form-control', placeholder: 'Last name'}
+      .col-md-4
+        .mb-3
+          = f.label :employee_type, {class:'form-label'}
+          = f.select :employee_type, [["Officer", 1], ["Staff", 2], ["Contingent", 3]], {:prompt => 'Select'}, {class: "form-select" }
     = f.submit :class => "btn btn-primary"
