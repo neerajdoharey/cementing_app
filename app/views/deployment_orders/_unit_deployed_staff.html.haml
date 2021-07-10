@@ -1,9 +1,13 @@
-.col-md-4
+.col-md-6
   .row
-    .col-md-10
+    .col-md-3
+      .mb-3
+        = label(:post, :staff_type, class:'form-label')
+        = select_tag "staff_type_#{rand(2)}", options_for_select([["Officer", 1], ["Staff", 2], ["Contingent", 3]]), {class: "form-select staff_type" , prompt: "Select"}
+    .col-md-7
       .mb-3
         = f.label :staff_id, "Staff Name", {class:'form-label'}
-        = f.select :staff_id, @staffs, {:prompt => 'Select'}, {class: "form-select" }
+        = f.select :staff_id, @staffs, {:prompt => 'Select'}, {class: "form-select staff_list" }
     .col-md-2
       .mb-3.delete
         = link_to '#', class: 'remove_record_hor' do

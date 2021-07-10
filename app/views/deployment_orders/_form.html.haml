@@ -89,6 +89,25 @@
     = f.submit :class => "btn btn-primary"
 
 :javascript
+  $('form').on('change', '.staff_type', function(event) { 
+    var select_staff = this;
+    $.ajax({
+      type: "GET",
+      url: "/staffs/staff_list",
+      data: {id: $(this).val()},
+      cache: false,
+      dataType: "json",
+      success: function(data){
+        let staff_list = $(select_staff).parent().parent().parent().find( ".staff_list" )
+        $(staff_list).html("<option value=''>Select</option>");
+        
+        $.each( data, function( key, value ) {
+          $(staff_list).append("<option value='"+value["id"]+"'>"+value["first_name"]+" "+value["last_name"]+"</option>");
+        });
+        
+      }
+    });
+  });
 
   $('form').on('click', '.remove_record_unit', function(event) {
     $(this).next('input[type=hidden]').val('1');

@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   
   resources :jobs
-  resources :staffs
+  resources :staffs do 
+    get 'staff_list', on: :collection
+  end
   resources :deployment_orders
   resources :rigs
   devise_for :users

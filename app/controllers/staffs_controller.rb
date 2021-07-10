@@ -41,6 +41,14 @@ class StaffsController < ApplicationController
     redirect_to staffs_path
   end
 
+  def staff_list
+    @staffs = Staff.where(employee_type: params[:id])
+    respond_to do |format|
+      format.html
+      format.json { render json: @staffs.to_json }
+    end
+  end
+
   private
   def staff_params
     params.require(:staff).permit(:first_name, :last_name, :employee_type)
