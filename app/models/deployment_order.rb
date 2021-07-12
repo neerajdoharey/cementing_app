@@ -14,6 +14,8 @@ class DeploymentOrder < ApplicationRecord
   has_many :job_incharges, dependent: :destroy
   accepts_nested_attributes_for :job_incharges, allow_destroy: true, reject_if: :all_blank
 
+  validates :date_of_duty, :well_name, :departure_time, :rig_id, presence: true
+
   def reject_cement_unit(attributed)
     attributed['vehicle_name'].blank? || attributed['quantity'].blank?
   end
